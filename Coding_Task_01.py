@@ -22,7 +22,8 @@ def initialize_network(n_inputs, n_hidden, n_outputs):
  
 seed(1)
 
-network = initialize_network(2, 1, 2)
+#network = initialize_network(2, 1, 2)
+network = initialize_network(2, 4, 1)
 
 c = 1
 
@@ -62,8 +63,13 @@ def forward_propagate(network, row):
 
 
 # test forward propagation with input pattern [1,0]
-network = [[{'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}],
-		[{'weights': [0.2550690257394217, 0.49543508709194095]}, {'weights': [0.4494910647887381, 0.651592972722763]}]]
+#network = [[{'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}],
+#		[{'weights': [0.2550690257394217, 0.49543508709194095]}, {'weights': [0.4494910647887381, 0.651592972722763]}]]
+
+network = [[{'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}, {'weights': [0.2550690257394217, 0.49543508709194095, 0.4494910647887381]}, {'weights': [0.651592972722763, 0.7887233511355132, 0.0938595867742349]}, {'weights': [0.02834747652200631, 0.8357651039198697, 0.43276706790505337]}],
+           [{'weights': [0.762280082457942, 0.0021060533511106927, 0.4453871940548014, 0.7215400323407826, 0.22876222127045265]}]
+           ]
+
 row = [1, 0, None]
 output = forward_propagate(network, row)
 print("Output Layer Neurons: " + str(output) + "\n")
@@ -117,4 +123,4 @@ for layer in network:
     print("Output, Weights, & error of Back Layer " + str(d) + str(layer) + "\n")
 
 
-
+'''
