@@ -27,7 +27,7 @@ network = initialize_network(2, 1, 2)
 c = 1
 
 for layer in network:
-    print("Layer " + str(c) + str(layer) + "\n")
+    print("Weights of Layer " + str(c) + str(layer) + "\n")
     c += 1
 
 
@@ -41,9 +41,9 @@ def activate(weights, inputs):
 
 
 
-# Transfer neuron activation
+# Transfer neuron activation using ReLU
 def transfer(activation):
-	return 1.0 / (1.0 + exp(-activation))
+    return max(0, activation)
 
 
 
@@ -61,16 +61,19 @@ def forward_propagate(network, row):
 
 
 
-# test forward propagation
+# test forward propagation with input pattern [1,0]
 network = [[{'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}],
 		[{'weights': [0.2550690257394217, 0.49543508709194095]}, {'weights': [0.4494910647887381, 0.651592972722763]}]]
 row = [1, 0, None]
 output = forward_propagate(network, row)
-print("Output Neurons: " + str(output) + "\n")
+print("Output Layer Neurons: " + str(output) + "\n")
 
 
+##############################################################################
+##############################################################################
 
-# Calculate the derivative of an neuron output
+
+# Calculate the derivative of an output neuron (which uses sigmoid activation function)
 def transfer_derivative(output):
 	return output * (1.0 - output)
 
@@ -105,11 +108,13 @@ expected = [0, 1]
 
 backward_propagate_error(network, expected)
 
+print("###################################\n")
+
 d=0
 
 for layer in network:
     d += 1
-    print("Layer " + str(d) + str(layer) + "\n")
+    print("Output, Weights, & error of Back Layer " + str(d) + str(layer) + "\n")
 
 
 
