@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Apr 10 12:01:50 2021
+Created on Sun Apr 11 02:16:37 2021
 
 @author: Mashrukh
 """
@@ -22,12 +22,12 @@ def initialize_network(n_inputs, n_hidden, n_outputs):
  
 seed(1)
 
-network = initialize_network(2, 4, 1)
+network = initialize_network(2, 1, 2)
 
 c = 0
 for layer in network:
-    print("Weights from Layer " + str(c) + " : " + str(layer) + "\n")
     c += 1
+    print("Weights of Layer " + str(c) + ' : ' + str(layer) + "\n")
 
 
 
@@ -61,8 +61,8 @@ def forward_propagate(network, row):
 
 
 # test forward propagation with input pattern [1,0]
-network = [[{'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}, {'weights': [0.2550690257394217, 0.49543508709194095, 0.4494910647887381]}, {'weights': [0.651592972722763, 0.7887233511355132, 0.0938595867742349]}, {'weights': [0.02834747652200631, 0.8357651039198697, 0.43276706790505337]}],
-           [{'weights': [0.762280082457942, 0.0021060533511106927, 0.4453871940548014, 0.7215400323407826, 0.22876222127045265]}]
+network = [[{'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}],
+		   [{'weights': [0.2550690257394217, 0.49543508709194095]}, {'weights': [0.4494910647887381, 0.651592972722763]}]
            ]
 
 row = [1, 0, None]
@@ -107,15 +107,9 @@ def backward_propagate_error(network, expected):
 
 
 # test backpropagation of error
-network = [[{'output': 0.6213859615555266, 'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}, {'output': 0.762280082457942, 'weights': [0.2550690257394217, 0.49543508709194095, 0.4494910647887381]}, {'output': 0.0021060533511106927, 'weights': [0.651592972722763, 0.7887233511355132, 0.0938595867742349]}, {'output': 0.4453871940548014, 'weights': [0.02834747652200631, 0.8357651039198697, 0.43276706790505337]}],
-           [{'output': 0.7215400323407826, 'weights': [0.762280082457942, 0.0021060533511106927, 0.4453871940548014, 0.7215400323407826, 0.22876222127045265]}]
+network = [[{'output': 0.7105668883115941, 'weights': [0.13436424411240122, 0.8474337369372327, 0.763774618976614]}],
+		   [{'output': 0.6213859615555266, 'weights': [0.2550690257394217, 0.49543508709194095]}, {'output': 0.6573693455986976, 'weights': [0.4494910647887381, 0.651592972722763]}]
            ]
-
-
-# Check the outputs and backward weights before calling error function
-for i in reversed(range(len(network))):
-    layer = network[i]
-    print("Backward weights from Layer " + str(i+1) + " with length " + str(len(layer)) + " : " + str(layer) + "\n")
 
 
 print("#######################################################\n")
@@ -128,7 +122,7 @@ backward_propagate_error(network, expected)
 d=0
 for layer in network:
     d += 1
-    print("Output, Weights, & error of Backward Layer " + str(d) + ' : ' + str(layer) + "\n")
+    print("Output, Weights, & error of Back Layer " + str(d) + ' : ' + str(layer) + "\n")
 
 
 
